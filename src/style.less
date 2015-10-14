@@ -1,0 +1,78 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
+@columns: 150px 10;
+@darkPurple: #2A002A;
+@lightPink: #FDD6F3;
+@mediumPink: #FF5CDA;
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.tiles {
+  -moz-column-gap: 10px;
+  -webkit-column-gap: 10px;
+  column-gap: 10px;
+  -webkit-columns: @columns;
+  -moz-columns: @columns;
+  columns: @columns;
+  /*width: 480px; */
+}
+
+.tile {
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.tile img {
+  width: 100%;
+}
+
+.tile-name {
+  text-align: center;
+}
+
+body {
+  background-color: @darkPurple;
+  color: white;
+}
+
+.logo {
+  color: white;
+  font-weight: lighter;
+  font-size: 50px;
+  text-shadow: 0 0 15px @mediumPink;
+}
+
+.nav-item {
+  display: inline-block;
+  font-size: 30px;
+  border-bottom: 1px solid @darkPurple;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  color: @lightPink;
+}
+
+.nav-item::before {
+  content: "/ ";
+}
+
+.nav-item:first-child::before {
+  content: "";
+}
+
+.loading::before {
+  content: url(/img/squares.svg);
+}
