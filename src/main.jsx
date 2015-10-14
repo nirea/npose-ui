@@ -73,10 +73,18 @@ let App = React.createClass({
 });
 
 let PoseUI = React.createClass({
+	getThumbs: function() {
+		if (this.props.loading) {
+			return <Loading />;
+		}
+
+		return <Thumbs items={this.props.items} path={this.props.path} handleItemClick={this.props.handleItemClick} />;
+	},
+
   render: function() {
     return <div>
       <Nav path={this.props.path} setPath={this.props.setPath} />
-      <Thumbs items={this.props.items} path={this.props.path} handleItemClick={this.props.handleItemClick} />
+			{this.getThumbs()} 
     </div>;
   }
 
@@ -125,6 +133,12 @@ let SLThumb = React.createClass({
       <img className="tile-thumb-img" src={url} />
     </div>;
   }
+});
+
+let Loading = React.createClass({
+	render: function() {
+		return <div className="loading"></div>;
+	}
 });
 
 var container = document.createElement('div');
