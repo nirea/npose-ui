@@ -122,7 +122,7 @@ let SLThumb = React.createClass({
   render: function() {
     let url = `http://secondlife.com/app/image/${this.props.uuid}/1`;
     return <div className={this.props.className}>
-      <img src={url} />
+      <img className="tile-thumb-img" src={url} />
     </div>;
   }
 });

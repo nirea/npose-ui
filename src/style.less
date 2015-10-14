@@ -1,8 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
 @columns: 150px 10;
 @darkPurple: #2A002A;
+@lightPurple: #58005F;
 @lightPink: #FDD6F3;
 @mediumPink: #FF5CDA;
+@hugeShadow: 0 0 40px #fff, 0 0 15px @mediumPink;
+@bigShadow: 0 0 30px #fff, 0 0 10px @mediumPink;
+@littleShadow: 0 0 10px #fff, 0 0 4px @mediumPink;
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -31,11 +35,47 @@ html {
   display: inline-block;
   margin-bottom: 20px;
   width: 100%;
+	background-color: @lightPurple;
+	padding: 10px;
+}
+
+.tile:hover {
+	text-shadow: @littleShadow;
 }
 
 .tile img {
   width: 100%;
+	/*position: relative;*/
 }
+
+.tile-thumb {
+	margin-top: 5px;
+	position: relative;
+	width: 100%;		/* desired width */
+}
+
+.tile-thumb:before {
+	content: "";
+	display: block;
+	padding-top: 100%; 	/* initial ratio of 1:1*/
+}
+
+.tile-thumb-img {
+	position:  absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;	
+	height: 100%;
+}
+
+/*http://www.mademyday.de/css-height-equals-width-with-pure-css.html*/
+/*.tile img ::before {*/
+	/*content: "";*/
+	/*display: block;*/
+	/*padding-top: 100%;*/
+/*}*/
+
 
 .tile-name {
   text-align: center;
@@ -50,7 +90,11 @@ body {
   color: white;
   font-weight: lighter;
   font-size: 50px;
-  text-shadow: 0 0 15px @mediumPink;
+  text-shadow: @bigShadow;
+}
+
+.logo:hover {
+	text-shadow: @hugeShadow;
 }
 
 .nav-item {
@@ -62,7 +106,7 @@ body {
 }
 
 .nav-item:hover {
-  color: @lightPink;
+	text-shadow: @littleShadow;
 }
 
 .nav-item::before {
