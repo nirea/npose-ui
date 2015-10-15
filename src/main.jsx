@@ -42,10 +42,10 @@ let App = React.createClass({
 
   handleItemClick: function(item) {
     let itemPath = this.state.path;
+    itemPath += encodeURIComponent(item.name);
     if (!itemPath.endsWith('/')) {
       itemPath += '/';
     }
-    itemPath += item.name;
     if (item.hasChildren) {
       this.setPath(itemPath);
     } else {
@@ -92,7 +92,10 @@ let PoseUI = React.createClass({
 
 let Nav = React.createClass({
   render: function() {
-    let parts = this.props.path.split('/');
+    // filter out nulls and empties
+    let parts = this.props.path.split('/').filter(p => p);
+    // we want first item to be empty for logo/home
+    parts.splice(0, 0, "");
     let nodes = [];
     for (let p in parts) {
       let path = parts.slice(0, p + 1).join('/');
@@ -116,8 +119,8 @@ let Thumbs = React.createClass({
   renderItem: function(item) {
     return <div className="tile" key={item.name}
       name={item.name} onClick={() => this.props.handleItemClick(item)}>
-      <div className="tile-name">{item.name}</div>
       {item.thumb ? <SLThumb uuid={item.thumb} className="tile-thumb" /> : ''}
+      <div className="tile-name">{item.name}</div>
     </div>;
   },
 

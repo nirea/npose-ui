@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
-@columns: 150px 10;
 @darkPurple: #2A002A;
 @lightPurple: #58005F;
 @lightPink: #FDD6F3;
@@ -7,6 +6,8 @@
 @hugeShadow: 0 0 40px #fff, 0 0 15px @mediumPink;
 @bigShadow: 0 0 30px #fff, 0 0 10px @mediumPink;
 @littleShadow: 0 0 10px #fff, 0 0 4px @mediumPink;
+@tileSize: 150px;
+@gutter: 15px;
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -19,66 +20,42 @@ html {
   box-sizing: inherit;
 }
 
-.tiles {
-  -moz-column-gap: 10px;
-  -webkit-column-gap: 10px;
-  column-gap: 10px;
-  -webkit-columns: @columns;
-  -moz-columns: @columns;
-  columns: @columns;
-  /*width: 480px; */
-}
-
 .tile {
   color: white;
   cursor: pointer;
-  display: inline-block;
-  margin-bottom: 20px;
-  width: 100%;
+  /*display: inline-block;*/
 	background-color: @lightPurple;
-	padding: 10px;
+  position: relative;
+  width: 150px; 
+  height: 150px;
+  float: left;
+  margin: 0 @gutter @gutter 0;
 }
 
 .tile:hover {
-	text-shadow: @littleShadow;
+	box-shadow: @bigShadow;
 }
 
 .tile img {
   width: 100%;
-	/*position: relative;*/
 }
 
 .tile-thumb {
-	margin-top: 5px;
 	position: relative;
-	width: 100%;		/* desired width */
-}
-
-.tile-thumb:before {
-	content: "";
-	display: block;
-	padding-top: 100%; 	/* initial ratio of 1:1*/
 }
 
 .tile-thumb-img {
-	position:  absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;	
+  width: 100%;
 	height: 100%;
 }
 
-/*http://www.mademyday.de/css-height-equals-width-with-pure-css.html*/
-/*.tile img ::before {*/
-	/*content: "";*/
-	/*display: block;*/
-	/*padding-top: 100%;*/
-/*}*/
-
-
 .tile-name {
   text-align: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin-top: calc(@gutter / 2);
+  text-shadow: 1px 1px 4px black, 1px 1px 10px rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -111,10 +88,16 @@ body {
 
 .nav-item::before {
   content: "/ ";
+  font-weight: lighter;
 }
 
 .nav-item:first-child::before {
   content: "";
+}
+
+.loading {
+  margin: 0 auto;
+  display: table;/* center this bitch */
 }
 
 .loading::before {
